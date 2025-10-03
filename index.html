@@ -1,1 +1,75 @@
-<h1>Ejemplo</h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Corazón Latiente</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #ffe6f0;
+        }
+
+        .heart {
+            position: relative;
+            width: 100px;
+            height: 90px;
+            animation: heartbeat 1.2s infinite;
+        }
+
+            .heart:before,
+            .heart:after {
+                content: "";
+                position: absolute;
+                top: 0;
+                width: 52px;
+                height: 80px;
+                border-radius: 50px 50px 0 0;
+                background: #ff4d6d;
+            }
+
+            .heart:before {
+                left: 50px;
+                transform: rotate(-45deg);
+            }
+
+            .heart:after {
+                left: 0;
+                transform: rotate(45deg);
+            }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.15);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.15);
+            }
+
+            60% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart"></div>
+</body>
+</html>
