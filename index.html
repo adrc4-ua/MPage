@@ -1627,9 +1627,42 @@ h1 {
   }
 }
 
+.top-left-link {
+  position: fixed;
+  top: env(safe-area-inset-top, 0);
+  left: env(safe-area-inset-left, 0);
+  z-index: 1000;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+
+.top-left-img {
+  display: block;
+  padding: -100px;
+  width: clamp(28px, 6vw, 56px);
+  height: auto;
+  transform-origin: center center;
+  transform: translate(-8px, -8px) rotate(165deg);
+  transition: transform 0.15s ease;
+  will-change: transform;
+}
+
+.top-left-link:hover .top-left-img,
+.top-left-img:hover,
+.top-left-link:active .top-left-img,
+.top-left-img:active {
+  transform: translate(5px, 3px) rotate(0deg) scale(1.1);
+}
+
     </style>
   </head>
   <body class="container">
+
+    <a class="top-left-link" href="#" aria-label="Acción">
+      <img class="top-left-img" src="./images/Gurry1.png" alt="Sorpresa">
+    </a>
+
     <h1 class="titulo">
       Ejemplo temporal</h1>
   
