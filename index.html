@@ -1643,7 +1643,7 @@ h1 {
   width: clamp(28px, 6vw, 76px);
   height: auto;
   transform-origin: center center;
-  transform: translate(-8px, -8px) rotate(165deg);
+  transform: translate(-8px, -5px) rotate(165deg);
   transition: transform 0.15s ease;
   will-change: transform;
 }
@@ -1669,7 +1669,7 @@ h1 {
   width: clamp(28px, 6vw, 60.8px);
   height: auto;
   transform-origin: center center;
-  transform: translate(7px, -7px) rotate(-145deg);
+  transform: translate(7px, -15px) rotate(-145deg);
   transition: transform 0.15s ease;
   will-change: transform;
 }
@@ -1680,11 +1680,20 @@ h1 {
   transform: translate(-5px, 3px) rotate(0deg) scale(1.1);
 }
 
-@media (max-width: 600px) {
-  .top-left-img,
-  .top-right-img {
-    width: clamp(48px, 16vw, 96px);
-  }
+.top-left-img {
+  width: clamp(36px, 12vw, 80px);
+  height: auto;
+}
+
+.top-right-img {
+  width: clamp(36px, 12vw, 64px);
+  height: auto;
+}
+
+.top-left-link:focus:not(:focus-visible),
+.top-right-link:focus:not(:focus-visible) {
+  outline: none;
+  box-shadow: none;
 }
 
     </style>
@@ -1700,7 +1709,7 @@ h1 {
     </a>
 
     <h1 class="titulo">
-      Ejemplo temporal</h1>
+      Ejemplo temporals</h1>
   
     <div class="night"></div>
     <div class="flowers">
