@@ -1759,17 +1759,73 @@ h1 {
   -webkit-tap-highlight-color: transparent !important;
 }
 
+.custom-modal {
+  display: none;
+  position: fixed;
+  z-index: 2000;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100vw; height: 100vh;
+}
+
+.custom-modal.open {
+  display: block;
+}
+
+.custom-modal__backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.85);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.custom-modal__content {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.custom-modal__content img {
+  max-width: 90vw;
+  max-height: 80vh;
+  border-radius: 10px;
+  box-shadow: 0 2px 20px #000a;
+}
+
     </style>
   </head>
+
+<div id="image-modal" class="custom-modal">
+  <div class="custom-modal__backdrop"></div>
+  <div class="custom-modal__content">
+    <img id="modal-img" src="" alt="Imagen ampliada" />
+  </div>
+</div>
+
   <body class="container">
-
     <a class="top-left-link" href="#" aria-label="Acción">
-      <img class="top-left-img" src="./images/Gurry1.png" alt="Sorpresa izquierda">
+      <img class="top-left-img"
+          src="./images/Gurry1.png"
+          alt="Sorpresa izquierda"
+          data-modal-img="./images/Gurry1.png">
+    </a>
+    <a class="top-right-link" href="#" aria-label="Acción derecha">
+      <img class="top-right-img"
+          src="./images/Espinete1.png"
+          alt="Sorpresa derecha"
+          data-modal-img="./images/Espinete1.png">
     </a>
 
-    <a class="top-right-link" href="#" aria-label="Acción derecha">
-      <img class="top-right-img" src="./images/Espinete1.png" alt="Sorpresa derecha">
-    </a>
+    <div id="image-modal" class="custom-modal">
+      <div class="custom-modal__backdrop"></div>
+      <div class="custom-modal__content">
+        <img id="modal-img" src="" alt="Imagen ampliada" />
+      </div>
+    </div>
 
     <h1 class="titulo">
       Ejemplo temporal</h1>
@@ -2084,5 +2140,33 @@ h1 {
         </div>
       </div>
     </div>
+
+    <script>
+      function openModal(imgSrc) {
+        document.getElementById('modal-img').src = imgSrc;
+        document.getElementById('image-modal').classList.add('open');
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeModal() {
+        document.getElementById('image-modal').classList.remove('open');
+        document.body.style.overflow = "";
+      }
+
+      // Los eventos se asignan después de que el DOM existe
+      document.querySelectorAll('.top-left-img, .top-right-img').forEach(function(img){
+        img.style.cursor = "pointer";
+        img.addEventListener('click', function(e){
+          e.preventDefault();
+          openModal(img.getAttribute('data-modal-img') || img.src);
+        });
+      });
+
+      document.querySelector('.custom-modal__backdrop').addEventListener('click', closeModal);
+      document.addEventListener('keydown', function(e){
+        if (e.key === "Escape") closeModal();
+      });
+    </script>
+
   </body>
 </html>
