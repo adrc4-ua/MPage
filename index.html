@@ -1640,7 +1640,7 @@ h1 {
 .top-left-img {
   display: block;
   padding: -100px;
-  width: clamp(28px, 6vw, 56px);
+  width: clamp(28px, 6vw, 76px);
   height: auto;
   transform-origin: center center;
   transform: translate(-8px, -8px) rotate(165deg);
@@ -1655,12 +1655,48 @@ h1 {
   transform: translate(5px, 3px) rotate(0deg) scale(1.1);
 }
 
+.top-right-link {
+  position: fixed;
+  top: env(safe-area-inset-top, 0);
+  right: env(safe-area-inset-right, 0);
+  z-index: 1000;
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.top-right-img {
+  display: block;
+  width: clamp(28px, 6vw, 76px);
+  height: auto;
+  transform-origin: center center;
+  transform: translate(7px, -7px) rotate(-145deg);
+  transition: transform 0.15s ease;
+  will-change: transform;
+}
+.top-right-link:hover .top-right-img,
+.top-right-img:hover,
+.top-right-link:active .top-right-img,
+.top-right-img:active {
+  transform: translate(-5px, 3px) rotate(0deg) scale(1.1);
+}
+
+@media (max-width: 600px) {
+  .top-left-img,
+  .top-right-img {
+    width: clamp(48px, 16vw, 96px);
+  }
+}
+
     </style>
   </head>
   <body class="container">
 
     <a class="top-left-link" href="#" aria-label="Acción">
-      <img class="top-left-img" src="./images/Gurry1.png" alt="Sorpresa">
+      <img class="top-left-img" src="./images/Gurry1.png" alt="Sorpresa izquierda">
+    </a>
+
+    <a class="top-right-link" href="#" aria-label="Acción derecha">
+      <img class="top-right-img" src="./images/Espinete1.png" alt="Sorpresa derecha">
     </a>
 
     <h1 class="titulo">
