@@ -1784,8 +1784,8 @@ h1 {
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   z-index: 2;
-  max-width: 60vw;
-  max-height: 60vh;
+  max-width: 90vw;
+  max-height: 90vh;
   display: flex; align-items: center; justify-content: center;
 }
 
@@ -1823,7 +1823,29 @@ h1 {
   cursor: pointer;
   transition: background 0.2s, transform 0.13s;
   z-index: 100000;
+  display: block;
+  margin: 0 auto;
+  margin-top: 0;
 }
+
+@media (max-width: 900px) and (min-width: 601px) {
+  .boton-lirio {
+    margin-top: 4vh;
+  }
+}
+
+@media (max-width: 1000px) and (min-width: 901px) {
+  .boton-lirio {
+    margin-top: 4vh;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .boton-lirio {
+    margin-top: 8vh;
+  }
+}
+
 .boton-lirio:hover,
 .boton-lirio:focus {
   background: #3da6b8;
