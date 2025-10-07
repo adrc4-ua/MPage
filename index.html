@@ -1789,12 +1789,75 @@ h1 {
   display: flex; align-items: center; justify-content: center;
 }
 
+.custom-modal__content--text {
+  width: min(90vw, 90vh, 600px);
+  height: min(90vw, 90vh, 600px);
+  background: rgba(15,30,40,0.98);
+  border-radius: 18px;
+  box-shadow: 0 6px 32px #000a;
+  padding: 28px 20px 18px 20px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  animation: modalExpand 0.28s cubic-bezier(.55,1.6,.36,1) both;
+}
+
 .custom-modal__content img {
   max-width: 90vw;
   max-height: 80vh;
   border-radius: 10px;
 }
 
+.boton-lirio {
+  background: #58c0ce;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 15px 70px;
+  font-size: 2.2vh;
+  font-weight: bold;
+  letter-spacing: 2px;
+  box-shadow: 0 2px 14px #45aab5a8;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.13s;
+  z-index: 100000;
+}
+.boton-lirio:hover,
+.boton-lirio:focus {
+  background: #3da6b8;
+  transform: scale(1.05);
+  outline: none;
+}
+
+.custom-modal__content {
+  animation: modalExpand 0.28s cubic-bezier(.55,1.6,.36,1) both;
+}
+
+@keyframes modalExpand {
+  from {
+    transform: translate(-50%, -50%) scale(0.7);
+    opacity: 0.2;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+}
+
+.custom-modal:not(.open) .custom-modal__content {
+  animation: none !important;
+}
+
+.modal-text-content {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.modal-text-content::-webkit-scrollbar { display: none; }
     </style>
   </head>
 
@@ -1819,6 +1882,10 @@ h1 {
           data-modal-img="./images/Espinete2.png">
     </a>
 
+    <h1 class="titulo">
+        <button class="boton-lirio">❤️</button>
+    </h1>
+
     <div id="image-modal" class="custom-modal">
       <div class="custom-modal__backdrop"></div>
       <div class="custom-modal__content">
@@ -1826,8 +1893,26 @@ h1 {
       </div>
     </div>
 
-    <h1 class="titulo">
-      Ejemplo temporal</h1>
+    <div id="text-modal" class="custom-modal">
+      <div class="custom-modal__backdrop"></div>
+      <div class="custom-modal__content custom-modal__content--text">
+        <div class="modal-text-content">
+          <div class="modal-text-content">
+  <h2 style="font-size:2.1em; color:#58c0ce; margin-bottom:12px; text-align:center;">
+    Para que no olvides nunca lo mucho que te quiero
+  </h2>
+  <hr style="border: none; border-top: 2px solid #58c0ce; margin: 16px auto 24px auto; width: 85%;">
+      <div style="font-size:1.16em; color:#49afcb; text-align:left;">
+      Te escribo esto casi a las dos de la mañana, unos pocos días antes de vernos. No he tenido mucho tiempo para prepararlo todo y llevo unos cuantos días preparando cosas para ti que espero que te gusten cuando las veas.<br><br>
+      Estoy bastante nervioso y a la vez contento por conocer a tus padres. Sabes que este tipo de cosas no me suelen gustar, pero que pase por primera vez contigo me hace confirmar que eres definitivamente la persona con la que quiero pasar el resto de mi vida. No me imaginaba antes de conocerte que tendría ganas de que vinieras a mi casa, de presentarte a mi madre, de hablar con alguien todos los días sin dudar ni un solo segundo lo mucho que te quiero. Eres más que mi novia, Make, eres el motivo por el que despierto con una sonrisa dándote los buenos días, y eso solo lo puedes lograr tú.<br><br>
+      Sé que no siempre tenemos buenos días y que, lastimosamente, no hemos podido tener mucho tiempo para nosotros últimamente. Entre yo buscando piso, estudiando para clase, y por mil motivos que sabrás más que de sobra, pero aun así pienso en ti todos los días desde que te pedí ser mi novia. Me sorprende muchas veces la cantidad de cosas que me pueden llegar a hacer recordarte; eres simplemente imposible de olvidar para mi cabeza, tanto que hay días que me he preguntado seriamente si estoy obsesionado contigo.<br><br>
+      También quiero decirte que siento muchísimo no poder haber ido en verano a verte. Mi vida últimamente, como ya sabes, es muy complicada; no tengo nada de tiempo libre y el poco que tengo desde hace un tiempo lo invierto en preparar cosillas para ti. No sé si al final podré hacer todo lo que quiero, pero espero que pueda preparar la mayoría al menos. Te tengo que compensar lo de tu cumple, aunque cuando te escribo esto ya han pasado unos días de eso, aún me siento muy mal por ello. Al final, tanto estrés me ha hecho no tener en cuenta algo que te prometo que sé que es muy especial para ti y por eso también para mí. Te puedo prometer que, en lo que nos quede de vida juntos, nunca más volverá a pasar. Te aprecio demasiado como para hacerte pasar por eso nunca más.<br><br>
+      Poco más puedo contarte, cariño. Seguramente estés leyendo esto mientras yo estoy al lado tuyo, esperando ver cómo reaccionas, y ojalá te haya sacado aunque sea una sonrisilla de enamorada. Con eso ya habrá valido completamente la pena preparar esto. Te amo como a nada en este mundo ❤️.<br><br>
+    </div>
+</div>
+        </div>
+      </div>
+    </div>
   
     <div class="night"></div>
     <div class="flowers">
@@ -2141,31 +2226,44 @@ h1 {
     </div>
 
     <script>
-      function openModal(imgSrc) {
-        document.getElementById('modal-img').src = imgSrc;
-        document.getElementById('image-modal').classList.add('open');
-        document.body.style.overflow = "hidden";
-      }
+  function openModal(imgSrc) {
+    document.getElementById('modal-img').src = imgSrc;
+    document.getElementById('image-modal').classList.add('open');
+    document.body.style.overflow = "hidden";
+  }
 
-      function closeModal() {
-        document.getElementById('image-modal').classList.remove('open');
-        document.body.style.overflow = "";
-      }
+  function openTextModal() {
+    document.getElementById('text-modal').classList.add('open');
+    document.body.style.overflow = "hidden";
+  }
 
-      // Los eventos se asignan después de que el DOM existe
-      document.querySelectorAll('.top-left-img, .top-right-img').forEach(function(img){
-        img.style.cursor = "pointer";
-        img.addEventListener('click', function(e){
-          e.preventDefault();
-          openModal(img.getAttribute('data-modal-img') || img.src);
-        });
-      });
+  function closeModal() {
+    document.getElementById('image-modal').classList.remove('open');
+    document.getElementById('text-modal').classList.remove('open');
+    document.body.style.overflow = "";
+  }
 
-      document.querySelector('.custom-modal__backdrop').addEventListener('click', closeModal);
-      document.addEventListener('keydown', function(e){
-        if (e.key === "Escape") closeModal();
-      });
-    </script>
+  document.querySelectorAll('.top-left-img, .top-right-img').forEach(function(img){
+    img.style.cursor = "pointer";
+    img.addEventListener('click', function(e){
+      e.preventDefault();
+      openModal(img.getAttribute('data-modal-img') || img.src);
+    });
+  });
+
+  document.querySelector('.boton-lirio').addEventListener('click', function(e){
+    e.preventDefault();
+    openTextModal();
+  });
+
+  document.querySelectorAll('.custom-modal__backdrop').forEach(function(backdrop){
+    backdrop.addEventListener('click', closeModal);
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === "Escape") closeModal();
+  });
+</script>
 
   </body>
 </html>
